@@ -16,10 +16,19 @@ $(function () {
         processTableBody = $('#processTable tbody'),
         rowTemplate = '<tr><td>{Id}</td><td>{Priority}</td><td>{VirtMemory}</td><td>{PhysMemory}</td><td>{Name}</td></tr>';
 
+    function formatTimeFromSec(v){
+        var vals = [],
+            s = v % 60,
+            m = (v - s) / 60 % 60;
+            //h = ((v - s - m * 60) / 60 / 60 / 60).toFixed(0)
+        return h + ":" + s + ":" + m;
+    }
+
     function formatProcess(process) {
         return $.extend(process, {
-            Id: process.Id,
-            Priority: process.Priority,
+            VirtMemory: (process.VirtMemory / 1000).toFixed(2),
+            PhysMemory: (process.PhysMemory / 1000).toFixed(2),
+            //TimeRunning: formatTimeFromSec(process.TimeRunning),
         });
     }
 

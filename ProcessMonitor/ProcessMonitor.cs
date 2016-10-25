@@ -45,8 +45,9 @@ namespace ProcessMonitor
                     Priority = p.BasePriority,
                     VirtMemory = p.VirtualMemorySize64,
                     PhysMemory = p.WorkingSet64,
+                    //TimeRunning = (int)p.TotalProcessorTime.TotalSeconds, //TODO: permission issue
                     Name = p.ProcessName,
-                }).ToList();
+                }).OrderByDescending(p=>p.PhysMemory).ToList();
 
                 foreach (var client in _clients.Values)
                 {
