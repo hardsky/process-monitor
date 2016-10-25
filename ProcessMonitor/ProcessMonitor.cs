@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 
-namespace process_monitor
+namespace ProcessMonitor
 {
     class ProcessMonitor: IServer
     {
