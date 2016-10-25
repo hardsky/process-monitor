@@ -14,7 +14,7 @@ $(function () {
 
     var hub = $.connection.processHub, // the generated client-side hub proxy
         processTableBody = $('#processTable tbody'),
-        rowTemplate = '<tr><td>{Id}</td><td>{Priority}</td></tr>';
+        rowTemplate = '<tr><td>{Id}</td><td>{Priority}</td><td>{VirtMemory}</td><td>{PhysMemory}</td><td>{Name}</td></tr>';
 
     function formatProcess(process) {
         return $.extend(process, {

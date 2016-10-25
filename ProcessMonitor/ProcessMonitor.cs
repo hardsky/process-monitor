@@ -42,7 +42,10 @@ namespace ProcessMonitor
                 data.Processes = Process.GetProcesses().Select(p => new ProcessData
                 {
                     Id = p.Id,
-                    Priority = p.BasePriority
+                    Priority = p.BasePriority,
+                    VirtMemory = p.VirtualMemorySize64,
+                    PhysMemory = p.WorkingSet64,
+                    Name = p.ProcessName,
                 }).ToList();
 
                 foreach (var client in _clients.Values)
