@@ -1,7 +1,4 @@
-﻿using Infrastructure;
-using System;
-
-namespace ProcessMonitor
+﻿namespace Infrastructure
 {
     public interface IAlertRule
     {

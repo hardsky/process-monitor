@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IAlertRule.cs" />
     <Compile Include="IClient.cs" />
     <Compile Include="ITransport.cs" />
     <Compile Include="IServer.cs" />

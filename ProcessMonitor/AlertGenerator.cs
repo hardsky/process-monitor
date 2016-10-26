@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Infrastructure;
 
 namespace ProcessMonitor
 {
     public class AlertMonitor
     {
-        public List<String> Alerts { get; set; } = new List<string>();
+        public List<string> Alerts { get; set; } = new List<string>();
         public bool IsAlert
         {
             get
