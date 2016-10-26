@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace PipeTransport
 {
+    /// <summary>
+    /// 'Named Pipe' implementation for ITransport.
+    /// Part that used on server side. (See ProcessMonitor project for example.)
+    /// </summary>
     public class PipeServerTransport : ITransport
     {
         public class PipeClient : IClient

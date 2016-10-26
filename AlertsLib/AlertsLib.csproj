@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlertGenerator.cs" />
+    <Compile Include="AlertMonitor.cs" />
     <Compile Include="MemoryAlert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

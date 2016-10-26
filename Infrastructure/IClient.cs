@@ -1,5 +1,8 @@
 ﻿namespace Infrastructure
 {
+    /// <summary>
+    /// Clients, that connected to ProcessMonitor
+    /// </summary>
     public interface IClient
     {
         /// <summary>

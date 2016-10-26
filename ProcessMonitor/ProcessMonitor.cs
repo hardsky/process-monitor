@@ -12,7 +12,7 @@ namespace ProcessMonitor
     class ProcessMonitor: IServer
     {
         private readonly ConcurrentDictionary<int, IClient> _clients = new ConcurrentDictionary<int, IClient>();
-        private readonly Timer _timer = new Timer(3000);
+        private readonly Timer _timer = new Timer(3000); // we get fresh data and update clients with this period of time
 
         public ProcessMonitor()
         {

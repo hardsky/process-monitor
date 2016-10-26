@@ -2,6 +2,9 @@
 
 namespace Infrastructure
 {
+    /// <summary>
+    /// Transport between Server & Clients
+    /// </summary>
     public interface ITransport:IDisposable
     {
         /// <summary>

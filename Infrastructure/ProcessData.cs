@@ -2,6 +2,10 @@
 
 namespace Infrastructure
 {
+    /// <summary>
+    /// In this moment it mostly map Diagnocts.Process properties
+    /// ProcessMonitor pass this data to clients
+    /// </summary>
     [Serializable]
     public class ProcessData
     {
