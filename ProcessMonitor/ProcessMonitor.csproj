@@ -60,7 +60,7 @@
       <Project>{2fbf6347-1fea-4111-9144-7a55d76ce216}</Project>
       <Name>Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PipeConnector\PipeTransport.csproj">
+    <ProjectReference Include="..\PipeTransport\PipeTransport.csproj">
       <Project>{8d6f1d1c-65ca-4d9c-af60-c3a9c3c219ca}</Project>
       <Name>PipeTransport</Name>
     </ProjectReference>
