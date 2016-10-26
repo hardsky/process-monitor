@@ -1,5 +1,6 @@
 ﻿using AlertsLib;
 using Infrastructure;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -59,24 +60,18 @@ namespace ProcessMonitor
 
                  }).OrderByDescending(p=>p.PhysMemory).ToList();
 
+                var actions = new List<Action<IClient>> { c => c.Update(data) };
+
                 if (alertGen.IsAlert)
                 {
-                    var alertData = new MonitorData
-                    {
-                        Alerts = alertGen.Alerts
-                    };
-
-                    foreach (var client in _clients.Values)
-                    {
-                        client.Update(data);
-                        client.Alert(alertData);
-                    }
+                    actions.Add(c => c.Alert(new MonitorData { Alerts = alertGen.Alerts }));
                 }
-                else
+
+                foreach (var client in _clients.Values)
                 {
-                    foreach (var client in _clients.Values)
+                    foreach(var action in actions)
                     {
-                        client.Update(data);
+                        action(client);
                     }
                 }
             });
