@@ -13,6 +13,7 @@ if (!String.prototype.supplant) {
 $(function () {
 
     var hub = $.connection.processHub, // the generated client-side hub proxy
+        alertsBlock = $('#alertsBlock'),
         processTableBody = $('#processTable tbody'),
         rowTemplate = '<tr><td>{Id}</td><td>{Priority}</td><td>{VirtMemory}</td><td>{PhysMemory}</td><td>{Name}</td></tr>';
 
@@ -49,6 +50,15 @@ $(function () {
             var process = formatProcess(v);
             var raw = rowTemplate.supplant(process);
             processTableBody.append(raw);
+        });
+    };
+
+    hub.client.alert = function (data) {
+        alertsBlock.empty();
+        alertsBlock.attr('class', 'alerts');
+        $.each(data.Alerts, function (i, v) {
+            alertsBlock.append(v + '</br>');
+            alertsBlock.append('<hr>');
         });
     };
 

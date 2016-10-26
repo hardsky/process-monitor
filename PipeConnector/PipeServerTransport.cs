@@ -24,7 +24,11 @@ namespace PipeTransport
             public void Alert(MonitorData data)
             {
                 var bf = new BinaryFormatter();
-                bf.Serialize(_stream, data);
+                bf.Serialize(_stream, new Message
+                {
+                    Cmd = CommandType.ALERT,
+                    Data = data
+                });
             }
 
             public void Update(MonitorData data)

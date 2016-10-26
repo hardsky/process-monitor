@@ -3,8 +3,26 @@
 <head>
     <title></title>
 	<meta charset="utf-8" />
+    <style>
+        .alerts {
+            position: fixed;
+            top: 10px;
+            left: 70%;
+            margin-right: 10px;
+            z-index: 10;
+            background-color: rgba(255, 216, 0, 0.1);
+
+            border: solid red 2px;
+            padding: 10px;
+            font: bold 12sp monospace;
+            font-family: "Courier New", Courier, monospace;
+            color: red;
+        }
+
+    </style>
 </head>
 <body>
+    <div id="alertsBlock"></div>
     <div id="processTable">
         <table border="1">
             <thead>

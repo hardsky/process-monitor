@@ -35,7 +35,7 @@ namespace Web
         public void Alert(MonitorData data)
         {
             _data = data;
-            _clients.All.update(data);
+            _clients.All.alert(data);
         }
 
         public void Update(MonitorData data)

@@ -38,20 +38,47 @@ namespace ProcessMonitor
         private Task UpdateMonitorData()
         {
             return Task.Factory.StartNew(() => {
-                var data = new MonitorData();
-                data.Processes = Process.GetProcesses().Select(p => new ProcessData
-                {
-                    Id = p.Id,
-                    Priority = p.BasePriority,
-                    VirtMemory = p.VirtualMemorySize64,
-                    PhysMemory = p.WorkingSet64,
-                    //TimeRunning = (int)p.TotalProcessorTime.TotalSeconds, //TODO: permission issue
-                    Name = p.ProcessName,
-                }).OrderByDescending(p=>p.PhysMemory).ToList();
+                var alertGen = new AlertMonitor();
+                alertGen.AddAlertRule(new MemoryAlert());
 
-                foreach (var client in _clients.Values)
+                var data = new MonitorData();
+                data.Processes = Process.GetProcesses().Select(p => 
                 {
-                    client.Update(data);
+                    var processData = new ProcessData
+                    {
+                        Id = p.Id,
+                        Priority = p.BasePriority,
+                        VirtMemory = p.VirtualMemorySize64,
+                        PhysMemory = p.WorkingSet64,
+                        //TimeRunning = (int)p.TotalProcessorTime.TotalSeconds, //TODO: permission issue
+                        Name = p.ProcessName,
+                    };
+
+                    alertGen.Check(processData);
+
+                    return processData;
+
+                 }).OrderByDescending(p=>p.PhysMemory).ToList();
+
+                if (alertGen.IsAlert)
+                {
+                    var alertData = new MonitorData
+                    {
+                        Alerts = alertGen.Alerts
+                    };
+
+                    foreach (var client in _clients.Values)
+                    {
+                        client.Update(data);
+                        client.Alert(alertData);
+                    }
+                }
+                else
+                {
+                    foreach (var client in _clients.Values)
+                    {
+                        client.Update(data);
+                    }
                 }
             });
         }
