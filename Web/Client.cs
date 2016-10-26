@@ -23,7 +23,6 @@ namespace Web
             }
         }
 
-
         private MonitorData _data;
         private IHubConnectionContext<dynamic> _clients;
 

@@ -15,30 +15,48 @@ namespace PipeTransport
         public class PipeClient : IClient
         {
             private PipeStream _stream;
+            private Action<IClient> _onDisconnect;
 
-            public PipeClient(PipeStream stream)
+            public PipeClient(PipeStream stream, Action<IClient> onDisconnect)
             {
                 _stream = stream;
+                _onDisconnect = onDisconnect;
             }
 
             public void Alert(MonitorData data)
             {
-                var bf = new BinaryFormatter();
-                bf.Serialize(_stream, new Message
+                try
                 {
-                    Cmd = CommandType.ALERT,
-                    Data = data
-                });
+                    var bf = new BinaryFormatter();
+                    bf.Serialize(_stream, new Message
+                    {
+                        Cmd = CommandType.ALERT,
+                        Data = data
+                    });
+                }
+                catch(Exception ex)
+                {
+                    _onDisconnect?.Invoke(this);
+                    Console.WriteLine(ex);
+                }
             }
 
             public void Update(MonitorData data)
             {
-                var bf = new BinaryFormatter();
-                bf.Serialize(_stream, new Message
+                try
                 {
-                    Cmd = CommandType.UPDATE,
-                    Data = data
-                });
+                    var bf = new BinaryFormatter();
+                    bf.Serialize(_stream, new Message
+                    {
+                        Cmd = CommandType.UPDATE,
+                        Data = data
+                    });
+                }
+                catch(Exception ex)
+                {
+                    _onDisconnect?.Invoke(this);
+                    Console.WriteLine(ex);
+                }
             }
         }
 
@@ -61,11 +79,11 @@ namespace PipeTransport
             {
                 while (true)
                 {
-                    var pipe = new NamedPipeServerStream("testpipe", PipeDirection.InOut);
+                    var pipe = new NamedPipeServerStream("testpipe", PipeDirection.InOut, NamedPipeServerStream.MaxAllowedServerInstances);
                     pipe.WaitForConnection();
 
                     _pipes[pipe.GetHashCode()] = pipe;
-                    _server.Subscribe(new PipeClient(pipe));
+                    _server.Subscribe(new PipeClient(pipe, x => _server.Unsubscribe(x)));
                 }
             });
         }

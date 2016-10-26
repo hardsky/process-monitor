@@ -26,22 +26,30 @@ namespace PipeTransport
         {
             Task.Factory.StartNew(() =>
             {
-                using (var _pipe = new NamedPipeClientStream(".", "testpipe", PipeDirection.InOut))
+                try
                 {
-                    _pipe.Connect();
-
-                    var cmds = new Dictionary<CommandType, Action<MonitorData>>
-                {
-                    { CommandType.UPDATE, _client.Update},
-                    { CommandType.ALERT, _client.Alert},
-                };
-
-                    while (true)
+                    using (var _pipe = new NamedPipeClientStream(".", "testpipe", PipeDirection.InOut))
                     {
-                        var bf = new BinaryFormatter();
-                        var msg = (Message)bf.Deserialize(_pipe);
-                        cmds[msg.Cmd](msg.Data);
+                        _pipe.Connect();
+
+                        var cmds = new Dictionary<CommandType, Action<MonitorData>>
+                            {
+                                { CommandType.UPDATE, _client.Update},
+                                { CommandType.ALERT, _client.Alert},
+                            };
+
+                        while (true)
+                        {
+                            var bf = new BinaryFormatter();
+                            var msg = (Message)bf.Deserialize(_pipe);
+                            cmds[msg.Cmd](msg.Data);
+                        }
                     }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                    Run();
                 }
             });
         }
