@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Infrastructure;
 
-namespace ProcessMonitor
+namespace AlertsLib
 {
     public class AlertMonitor
     {

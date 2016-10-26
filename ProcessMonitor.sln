@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessMonitor", "ProcessMo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipeTransport", "PipeTransport\PipeTransport.csproj", "{8D6F1D1C-65CA-4D9C-AF60-C3A9C3C219CA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlertsLib", "AlertsLib\AlertsLib.csproj", "{F3094074-7001-44AD-BDC3-DAA25FFAFAD2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{8D6F1D1C-65CA-4D9C-AF60-C3A9C3C219CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D6F1D1C-65CA-4D9C-AF60-C3A9C3C219CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D6F1D1C-65CA-4D9C-AF60-C3A9C3C219CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3094074-7001-44AD-BDC3-DAA25FFAFAD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3094074-7001-44AD-BDC3-DAA25FFAFAD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3094074-7001-44AD-BDC3-DAA25FFAFAD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3094074-7001-44AD-BDC3-DAA25FFAFAD2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,7 +2,7 @@
 using System;
 using System.Globalization;
 
-namespace ProcessMonitor
+namespace AlertsLib
 {
     public class MemoryAlert : IAlertRule
     {
