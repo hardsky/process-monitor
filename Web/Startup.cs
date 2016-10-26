@@ -2,7 +2,6 @@
 using Microsoft.Owin;
 using Owin;
 using PipeTransport;
-using System.Threading.Tasks;
 
 [assembly: OwinStartup(typeof(Web.Startup))]
 namespace Web

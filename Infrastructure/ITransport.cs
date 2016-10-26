@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure
 {
     public interface ITransport:IDisposable
     {
+        /// <summary>
+        /// Start communication. Should be called on server and client side.
+        /// </summary>
         void Run();
     }
 }
